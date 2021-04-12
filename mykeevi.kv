@@ -1,0 +1,417 @@
+ScreenManager:
+    id: scr_mngr
+
+<MainScreen>:
+    mainscreen:mainscreen
+    cname:cname
+    cmobile:cmobile
+    caddress:caddress
+    cproduct:cproduct
+    cpaid:cpaid
+    cpending:cpending
+    cquery:cquery
+    cremark:cremark
+    Screen:
+        id: mainscreen
+        cname: cname
+        cmobile:cmobile
+        caddress:caddress
+        cproduct:cproduct
+        cpaid:cpaid
+        cpending:cpending
+        cquery:cquery
+        cremark:cremark
+        BoxLayout:
+            orientation: 'vertical'
+            MDToolbar:
+                title:'Coustemer Records'
+                left_action_items:[["menu",lambda x:app.navigation_draw()]]
+                elevation:10
+            MDLabel:
+            MDBottomAppBar:
+                MDToolbar:
+                    left_action_items:[["receipt",lambda x:root.show_receipt()]]
+                    mode:'end'
+                    icon:"arrow-up-thick"
+                    type:'bottom'
+                    on_action_button:root.value()
+
+        MDLabel:
+            text:'New Coustemer '
+            pos_hint: {'center_x':0.6,'center_y':0.85}
+            theme_text_color:'Hint'
+            font_style:"Subtitle2"
+
+
+
+        MDLabel:
+            text:'Name* '
+            pos_hint:{'center_x':0.6,'center_y':0.775}
+            theme_text_color:'Primary'
+
+        MDTextField:
+            id: cname
+            pos_hint:{'center_x':0.7,'center_y':0.775}           
+            size_hint:(None,None)
+            width:100
+            height:100
+
+        MDLabel:
+            text:'Mobile '
+            pos_hint:{'center_x':0.6,'center_y':0.7}
+            theme_text_color:'Primary'
+        
+        MDTextField:
+            id: cmobile
+            pos_hint:{'center_x':0.7,'center_y':0.7}
+            size_hint:(None,None)
+            width:100
+            height:100
+
+        MDLabel:
+            text:'Address '
+            pos_hint:{'center_x':0.6,'center_y':0.625}
+            theme_text_color:'Primary'
+
+        MDTextField:
+            id: caddress
+            pos_hint:{'center_x':0.7,'center_y':0.625}
+            size_hint:(None,None)
+            width:100
+            height:100
+
+        MDLabel:
+            text:'Product* '
+            pos_hint:{'center_x':0.6,'center_y':0.55}
+            theme_text_color:'Primary'
+
+        MDTextField:
+            id: cproduct
+            pos_hint:{'center_x':0.7,'center_y':0.55}
+            size_hint:(None,None)
+            width:100
+            height:100
+
+        MDLabel:
+            text:'Paid* '
+            pos_hint:{'center_x':0.6,'center_y':0.475}
+            theme_text_color:'Primary'
+
+        MDTextField:
+            id: cpaid
+            pos_hint:{'center_x':0.7,'center_y':0.475}
+            size_hint:(None,None)
+            width:100
+            height:100
+
+
+        MDLabel:
+            text:'Pending* '
+            pos_hint:{'center_x':0.6,'center_y':0.4}
+            theme_text_color:'Primary'
+
+        MDTextField:
+            id: cpending
+            pos_hint:{'center_x':0.7,'center_y':0.4}
+            size_hint:(None,None)
+            width:100
+            height:100
+
+        MDLabel:
+            text:'Query'
+            pos_hint:{'center_x':0.6,'center_y':0.325}
+            theme_text_color:'Primary'
+
+        MDTextField:
+            id: cquery
+            pos_hint:{'center_x':0.7,'center_y':0.325}
+            size_hint:(None,None)
+            width:100
+            height:100
+
+
+        MDLabel:
+            text:'Remark'
+            pos_hint:{'center_x':0.6,'center_y':0.25}
+            theme_text_color:'Primary'
+
+        MDTextField:
+            id: cremark
+            pos_hint:{'center_x':0.7,'center_y':0.25}
+            size_hint:(None,None)
+            width:100
+            height:100
+
+
+    Screen:
+    NavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDToolbar:
+                        title: 'Coustemer Rcords'
+                        left_action_items: [["menu", lambda x: nav_drawer.toggle_nav_drawer()]]
+                        elevation:4
+                    Widget:
+        MDNavigationDrawer:
+            id: nav_drawer
+            ContentNavigationDrawer:
+                orientation: 'vertical'
+                padding: "8dp"
+                spacing: "8dp"
+                MDLabel:
+                    text: "Navigation"
+                    font_style: "H5"
+                    size_hint_y: None
+                    theme_text_color: 'Primary'
+                ScrollView:
+                    DrawerList:
+                        id: md_list
+                        MDList:
+                            OneLineIconListItem:
+                                text: "Coustemer Section"
+                            
+                                on_press: app.sm.current = 'coustmer'
+                            
+                                IconLeftWidget:
+                                    icon: "account"
+                            OneLineIconListItem:
+                                text: "Owner Section"
+
+                                on_press: app.sm.current = 'owner'
+                            
+                                IconLeftWidget:
+                                    icon: "graph-outline"
+                            OneLineIconListItem:
+                                text: "Main Section"
+
+                                on_press: app.sm.current = 'main'
+                            
+                                IconLeftWidget:
+                                    icon: "face-profile"
+   
+        
+    
+<OwnerScreen>:
+    Screen:
+        BoxLayout:
+            orientation: 'vertical'
+            MDToolbar:
+                title:'Coustemer Records owner'
+                left_action_items:[["menu",lambda x:app.navigation_draw()]]
+                elevation:10
+            MDLabel:
+            
+        Button:                    
+            text:'DayReport'
+            pos_hint:{'center_x':0.5,'center_y':0.7}
+            size_hint:(None,None)
+            width:150
+            height:50
+            on_release:root.dayreport()
+
+        Button:                    
+            text:'WeekReport'
+            pos_hint:{'center_x':0.5,'center_y':0.55}
+            size_hint:(None,None)
+            width:150
+            height:50
+            on_release:root.weekreport()
+        
+        Button:                    
+            text:'MonthReport'
+            pos_hint:{'center_x':0.5,'center_y':0.4}
+            size_hint:(None,None)
+            width:150
+            height:50
+            on_release:root.monthreport()
+
+        Button:                    
+            text:'OverallReport'
+            pos_hint:{'center_x':0.5,'center_y':0.25}
+            size_hint:(None,None)
+            width:150
+            height:50
+            on_release:root.overallreport()
+
+        Button:                    
+            text:'DownloadAll'
+            pos_hint:{'center_x':0.5,'center_y':0.1}
+            size_hint:(None,None)
+            width:150
+            height:50
+            on_release:root.downloadreport()
+
+    Screen:
+    NavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDToolbar:
+                        title: 'Coustemer Records'
+                        left_action_items: [["menu", lambda x: nav_drawer.toggle_nav_drawer()]]
+                        elevation:4
+                    Widget:
+        MDNavigationDrawer:
+            id: nav_drawer
+            ContentNavigationDrawer:
+                orientation: 'vertical'
+                padding: "8dp"
+                spacing: "8dp"
+                MDLabel:
+                    text: "Navigation"
+                    font_style: "H5"
+                    size_hint_y: None
+                    theme_text_color: 'Primary'
+                ScrollView:
+                    DrawerList:
+                        id: md_list
+                        MDList:
+                            OneLineIconListItem:
+                                text: "Coustemer Section"
+                            
+                                on_press: app.sm.current = 'coustmer'
+                            
+                                IconLeftWidget:
+                                    icon: "account"
+                            OneLineIconListItem:
+                                text: "Owner Section"
+
+                                on_press: app.sm.current = 'owner'
+                            
+                                IconLeftWidget:
+                                    icon: "graph-outline"
+                            OneLineIconListItem:
+                                text: "Main Section"
+
+                                on_press: app.sm.current = 'main'
+                            
+                                IconLeftWidget:
+                                    icon: "face-profile"
+   
+
+
+    
+
+            
+
+
+<CoustemerScreen>:
+    cousterscreen:coustemerscreen
+    cname:cname
+    cmobile:cmobile
+    cuid:cuid
+    Screen:
+        id: coustemerscreen
+        cname:cname
+        cmobile:cmobile
+        cuid:cuid
+        BoxLayout:
+            orientation: 'vertical'
+            MDToolbar:
+                title:'Coustemer Records Coustemers'
+                left_action_items:[["menu",lambda x:app.navigation_draw()]]
+                elevation:10
+            MDLabel:
+            MDBottomAppBar:
+                MDToolbar:
+                    mode:'end'
+                    icon:"arrow-down-thick"
+                    type:'bottom'
+                    on_action_button:root.show()
+        
+        MDLabel:
+            text:'Enter Name or Mobile or unique id of coustemer'
+            pos_hint:{'center_x':0.5,'center_y':0.75}
+            theme_text_color:'Hint'
+            font_style:'Body2'
+
+        MDLabel:
+            text:'UID'
+            pos_hint:{'center_x':0.6,'center_y':0.65}
+            theme_text_color:'Primary'
+        
+        MDTextField:
+            id: cuid
+            pos_hint:{'center_x':0.7,'center_y':0.65}
+            size_hint:(None,None)
+            width:100
+            height:100
+
+        MDLabel:
+            text:'Name '
+            pos_hint:{'center_x':0.6,'center_y':0.55}
+            theme_text_color:'Primary'
+        
+        MDTextField:
+            id: cname
+            pos_hint:{'center_x':0.7,'center_y':0.55}
+            size_hint:(None,None)
+            width:100
+            height:100
+
+        MDLabel:
+            text:'Mobile'
+            pos_hint:{'center_x':0.6,'center_y':0.45}
+            theme_text_color:'Primary'
+        
+        MDTextField:
+            id: cmobile
+            pos_hint:{'center_x':0.7,'center_y':0.45}
+            size_hint:(None,None)
+            width:100
+            height:100
+
+    Screen:
+    NavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDToolbar:
+                        title: 'Coustemer Rcords'
+                        left_action_items: [["menu", lambda x: nav_drawer.toggle_nav_drawer()]]
+                        elevation:4
+                    Widget:
+        MDNavigationDrawer:
+            id: nav_drawer
+            ContentNavigationDrawer:
+                orientation: 'vertical'
+                padding: "8dp"
+                spacing: "8dp"
+                MDLabel:
+                    text: "Navigation"
+                    font_style: "H5"
+                    size_hint_y: None
+                    theme_text_color: 'Primary'
+                ScrollView:
+                    DrawerList:
+                        id: md_list
+                        MDList:
+                            OneLineIconListItem:
+                                text: "Coustemer Section"
+                            
+                                on_press: app.sm.current = 'coustmer'
+                            
+                                IconLeftWidget:
+                                    icon: "account"
+                            OneLineIconListItem:
+                                text: "Owner Section"
+
+                                on_press: app.sm.current = 'owner'
+                            
+                                IconLeftWidget:
+                                    icon: "graph-outline"
+                            OneLineIconListItem:
+                                text: "Main Section"
+                            
+                                on_press: app.sm.current = 'main'
+
+                                IconLeftWidget:
+                                    icon: "face-profile"
+           
+    
+            
+
